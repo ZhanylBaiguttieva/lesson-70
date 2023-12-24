@@ -1,6 +1,7 @@
 import {Contact} from '../../types';
 import {createSlice} from '@reduxjs/toolkit';
 import {fetchContacts} from './contactThunks';
+import {RootState} from '../../app/store';
 
 interface ContactsState {
   items: Contact[];
@@ -31,3 +32,8 @@ export const contactsSlice = createSlice({
     });
   }
 });
+
+export const contactsReducer = contactsSlice.reducer;
+
+export const selectContacts = (state: RootState) => state.contacts.items;
+export const selectFetchContactLoading = (state: RootState) => state.contacts.fetchLoading;
