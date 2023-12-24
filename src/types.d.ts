@@ -5,3 +5,9 @@ export interface Contact {
   email: string;
   photo: string;
 }
+
+export type ApiContact = Omit<Contact, 'id'>;
+
+export interface ContactsList {
+  [id:string]: ApiContact;
+}
