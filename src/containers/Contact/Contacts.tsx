@@ -17,7 +17,6 @@ const Contacts: React.FC= () => {
 
   return (
     <>
-      <h4>Dishes</h4>
       {contactsLoading ? <Spinner/> : contacts.map((contact: Contact) => (
         <ContactItem
           key={contact.id}

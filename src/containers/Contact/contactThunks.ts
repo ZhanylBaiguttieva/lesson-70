@@ -1,5 +1,5 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
-import {ContactsList} from '../../types';
+import {ApiContact, ContactsList} from '../../types';
 import axiosApi from '../../axiosApi';
 
 export const fetchContacts = createAsyncThunk(
@@ -20,3 +20,9 @@ export const fetchContacts = createAsyncThunk(
       };
     });
   });
+export const createContact = createAsyncThunk<void, ApiContact>(
+  'contacts/create',
+  async(contact) => {
+    await axiosApi.post('/contacts.json', contact);
+  }
+);
