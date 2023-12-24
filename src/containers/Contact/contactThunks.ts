@@ -26,3 +26,35 @@ export const createContact = createAsyncThunk<void, ApiContact>(
     await axiosApi.post('/contacts.json', contact);
   }
 );
+
+export const deleteContact = createAsyncThunk<void, string>(
+  'contacts/delete',
+  async (contactId) => {
+    await axiosApi.delete('/contacts/' + contactId + '.json');
+  }
+);
+
+export const fetchOneContact = createAsyncThunk<ApiContact, string>(
+  'contacts/fetchOne',
+  async(contactId) => {
+    const response = await axiosApi.get<ApiContact| null>('/contacts' + contactId + '.json');
+    const contact = response.data;
+
+    if(contact === null) {
+      throw new Error('Not found');
+    }
+
+    return contact;
+  }
+);
+
+interface UpdateContactParams {
+  id: string;
+  contact: ApiContact;
+}
+export const updateContact = createAsyncThunk<void,UpdateContactParams>(
+  'contacts/update',
+  async({id, contact}) => {
+    await axiosApi.put('/contacts/' + id + '.json', contact);
+  }
+);
