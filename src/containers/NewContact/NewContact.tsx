@@ -16,8 +16,6 @@ const NewDish: React.FC = () => {
     navigate('/');
   };
 
-
-
   return (
     <div className="row mt-2">
       <div className="col">
