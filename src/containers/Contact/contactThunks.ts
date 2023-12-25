@@ -37,7 +37,7 @@ export const deleteContact = createAsyncThunk<void, string>(
 export const fetchOneContact = createAsyncThunk<ApiContact, string>(
   'contacts/fetchOne',
   async(contactId) => {
-    const response = await axiosApi.get<ApiContact| null>('/contacts' + contactId + '.json');
+    const response = await axiosApi.get<ApiContact| null>('/contacts/' + contactId + '.json');
     const contact = response.data;
 
     if(contact === null) {
@@ -49,8 +49,8 @@ export const fetchOneContact = createAsyncThunk<ApiContact, string>(
 );
 
 interface UpdateContactParams {
-  id: string;
-  contact: ApiContact;
+  id: string,
+  contact: ApiContact,
 }
 export const updateContact = createAsyncThunk<void,UpdateContactParams>(
   'contacts/update',

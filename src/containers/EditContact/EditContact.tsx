@@ -30,8 +30,6 @@ const EditContact: React.FC = () => {
 
   // let formSection = <Spinner/>;
 
-
-
   return (
     <div className="row mt-2">
       <div className="col">
