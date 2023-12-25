@@ -19,10 +19,10 @@ const ContactItem: React.FC<Props> = ({contact, deleteLoading, onDelete}) => {
   };
 
   const contactDetail = (
-    <div className="card mb-2" onClick={() => setShowModal(true)}>
+    <div className="card m-2" onClick={() => setShowModal(true)}>
       <div className="row no-gutters">
-        <div className="col-sm-4 rounded-start" style={imageStyle}/>
-        <div className="col-sm-8">
+        <div className="col-sm-2 rounded-start" style={imageStyle}/>
+        <div className="col-sm-10">
           <div className="card-body">
             <h5 className="card-title">{contact.name}</h5>
             <p className="card-text small">{contact.phone}</p>
@@ -36,7 +36,7 @@ const ContactItem: React.FC<Props> = ({contact, deleteLoading, onDelete}) => {
   return (
     <>
       {contactDetail}
-      <Modal show={showModal} title="X" onClose={() => setShowModal(false)}>
+      <Modal show={showModal} title="About Contact" onClose={() => setShowModal(false)}>
         <div className="modal-body">
           {contactDetail}
         </div>
