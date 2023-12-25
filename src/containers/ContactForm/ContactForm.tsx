@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {ApiContact} from '../../types';
 import ButtonSpinner from '../../Spinners/ButtonSpinner';
+import {NavLink} from 'react-router-dom';
 
 const initialState: ApiContact = {
   name: '',
@@ -14,11 +15,10 @@ interface Props {
   isEdit?: boolean;
   isLoading?: boolean;
 }
-
-// const img = '';
 const ContactForm: React.FC<Props> = ({onSubmit, existingContact = initialState, isEdit = false, isLoading= false}) => {
   const [contact, setContact] = useState<ApiContact>(existingContact);
 
+  const img = 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png';
   const changeContact = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setContact((prev) => ({
       ...prev,
@@ -58,6 +58,7 @@ const ContactForm: React.FC<Props> = ({onSubmit, existingContact = initialState,
           className="form-control"
           value={contact.phone}
           onChange={changeContact}
+          required
         />
       </div>
       <div className="form-group">
@@ -68,6 +69,7 @@ const ContactForm: React.FC<Props> = ({onSubmit, existingContact = initialState,
           className="form-control"
           value={contact.email}
           onChange={changeContact}
+          required
         />
       </div>
       <div className="form-group">
@@ -81,12 +83,15 @@ const ContactForm: React.FC<Props> = ({onSubmit, existingContact = initialState,
           onChange={changeContact}
         />
       </div>
-      {/*{img ? (<img src={img} alt='image'/>) :*/}
-      {/*  (<img src={img} alt='image'/>) }*/}
+      <div className='text-start m-2'>
+        <p>Photo preview: {contact.photo ? (<img src={contact.photo} alt='image'/>) :
+          (<img src={img} alt='image'/>) } </p>
+      </div>
       <button type="submit" className="btn btn-primary mt-2" disabled={isLoading}>
         {isLoading && <ButtonSpinner/>}
-        {isEdit ? 'Edit' : 'Update'}
+        {isEdit ? 'Update' : 'Save'}
       </button>
+      <NavLink  to="/" type='button' className="btn btn-success mt-2 ms-3">Back to contacts</NavLink>
     </form>
   );
 };
